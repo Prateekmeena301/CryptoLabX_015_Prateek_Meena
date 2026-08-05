@@ -1,7 +1,8 @@
 from datetime import datetime
 
-def log_menu(option):
+LOG_FILE = "cryptolabx.log"
 
-    with open("outputs/execution.log", "a") as file:
-
-        file.write(f"{datetime.now()} --> Option {option}\n")
+def write_log(action):
+    with open(LOG_FILE, "a") as file:
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        file.write(f"{timestamp} - {action}\n")
