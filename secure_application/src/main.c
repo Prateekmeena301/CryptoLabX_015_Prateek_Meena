@@ -5,6 +5,17 @@
 #include "mission.h"
 #include "telemetry.h"
 #include "logger.h"
+void register_drone()
+{
+    char drone_id[16];
+
+    printf("\n========== DRONE REGISTRATION ==========\n");
+    printf("Enter Drone ID: ");
+
+    scanf("%s", drone_id);
+
+    printf("Registered Drone ID: %s\n", drone_id);
+}
 void run_diagnostic()
 {
     char command[100];
@@ -30,7 +41,8 @@ void display_menu()
     printf("4. Display Telemetry\n");
     printf("5. View Log Location\n");
     printf("6. Run Diagnostic\n");
-    printf("7. Exit\n");
+    printf("7. Register Drone\n");
+    printf("8. Exit\n");
     printf("========================================\n");
 }
 
@@ -77,7 +89,11 @@ int main()
     		run_diagnostic();
     		log_event("Diagnostic command executed");
     		break;
-            case 7:
+    	    case 7:
+		register_drone();
+		log_event("Drone registration attempted");
+		break;
+            case 8:
                 log_event("Drone Control System exited");
                 printf("\nExiting Drone Control System...\n");
                 return 0;
