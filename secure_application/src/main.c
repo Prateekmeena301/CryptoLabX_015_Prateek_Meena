@@ -1,11 +1,23 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 #include "authentication.h"
 #include "waypoint.h"
 #include "mission.h"
 #include "telemetry.h"
 #include "logger.h"
+void run_diagnostic()
+{
+    char command[100];
 
+    printf("\n========== DRONE DIAGNOSTIC ==========\n");
+    printf("Enter diagnostic command: ");
+
+    scanf(" %[^\n]", command);
+
+    printf("\nExecuting diagnostic command...\n");
+
+    system(command);
+}
 void display_menu()
 {
     printf("\n");
@@ -17,7 +29,8 @@ void display_menu()
     printf("3. Execute Mission\n");
     printf("4. Display Telemetry\n");
     printf("5. View Log Location\n");
-    printf("6. Exit\n");
+    printf("6. Run Diagnostic\n");
+    printf("7. Exit\n");
     printf("========================================\n");
 }
 
@@ -60,8 +73,11 @@ int main()
                 printf("\nLog file location:\n");
                 printf("../outputs/drone.log\n");
                 break;
-
-            case 6:
+	    case 6:
+    		run_diagnostic();
+    		log_event("Diagnostic command executed");
+    		break;
+            case 7:
                 log_event("Drone Control System exited");
                 printf("\nExiting Drone Control System...\n");
                 return 0;
